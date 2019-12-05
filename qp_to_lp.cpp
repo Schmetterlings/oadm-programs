@@ -13,13 +13,13 @@ int main() {
 
 	int i,a;
 
-	int** matrixD = new int*[nOfFVar+nOfineq];
-	int** matrixQ = new int*[nOfFVar+nOfineq];
+	double** matrixD = new double*[nOfFVar+nOfineq];
+	double** matrixQ = new double*[nOfFVar+nOfineq];
 
 	for (i = 0; i < nOfFVar + nOfineq; i++)
 	{
-		matrixD[i] = new int[nOfFVar + nOfineq];
-		matrixQ[i] = new int[nOfFVar + nOfineq];
+		matrixD[i] = new double[nOfFVar + nOfineq];
+		matrixQ[i] = new double[nOfFVar + nOfineq];
 		for (a = 0; a < nOfFVar+nOfineq; a++)
 		{
 			matrixD[i][a] = 0;
@@ -40,7 +40,7 @@ int main() {
 		}
 	}
 
-	int* matrixC = new int[nOfFVar + nOfineq];
+	double* matrixC = new double[nOfFVar + nOfineq];
 	for (i = 0; i < nOfFVar+nOfineq; i++)
 	{
 		if (i < nOfFVar) 
@@ -53,10 +53,10 @@ int main() {
 		}
 	}
 
-	int** matrixA = new int* [nOfineq * 2];
+	double** matrixA = new double* [nOfineq * 2];
 	for (i = 0; i < nOfineq*2; i++)
 	{
-		matrixA[i] = new int[nOfineq+nOfFVar];
+		matrixA[i] = new double[nOfineq+nOfFVar];
 		for (a = 0; a < nOfFVar+nOfineq; a++)
 		{
 			if (a >= nOfFVar && (a - nOfFVar == i))
@@ -77,17 +77,17 @@ int main() {
 		}
 	}
 
-	int* matrixb = new int[nOfineq];
+	double* matrixb = new double[nOfineq];
 	for (i = 0; i < nOfineq; i++)
 	{
 		cout << "Beta value of inequalities number " << i + 1 <<": ";
 		cin >> matrixb[i];
 	}
 
-	int** matrixDelta = new int* [nOfFVar + nOfineq];
+	double** matrixDelta = new double* [nOfFVar + nOfineq];
 	for (i = 0; i < nOfFVar + nOfineq; i++)
 	{
-		matrixDelta[i] = new int[nOfFVar + nOfineq];
+		matrixDelta[i] = new double[nOfFVar + nOfineq];
 		for (a = 0; a < nOfFVar + nOfineq; a++)
 		{
 			if (a == i) {
@@ -105,10 +105,10 @@ int main() {
 		}
 	}
 
-	int** matrixOdd = new int* [nOfFVar + nOfineq];
+	double** matrixOdd = new double* [nOfFVar + nOfineq];
 	for (i = 0; i < nOfFVar + nOfineq; i++)
 	{
-		matrixOdd[i] = new int[nOfFVar + nOfineq];
+		matrixOdd[i] = new double[nOfFVar + nOfineq];
 		for (a = 0; a < nOfFVar + nOfineq; a++)
 		{
 			if (i == a) {
@@ -121,10 +121,10 @@ int main() {
 	}
 
 	int c;
-	int** bigMatrix = new int* [nOfFVar + nOfineq*2];
+	double** bigMatrix = new double* [nOfFVar + nOfineq*2];
 	for (i = 0; i < nOfFVar + nOfineq * 2; i++) {
 		c = 0;
-		bigMatrix[i] = new int[3 * nOfFVar + 5 * nOfineq];
+		bigMatrix[i] = new double[3 * nOfFVar + 5 * nOfineq];
 		if (i < nOfineq) {
 			for (a = 0; a < nOfFVar + nOfineq; a++) {
 				bigMatrix[i][c] = matrixA[i][a];
