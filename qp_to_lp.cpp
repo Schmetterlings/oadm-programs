@@ -28,7 +28,7 @@ int main() {
 
 	for (i = 0; i < nOfFVar; i++)
 	{
-		cout << "Coeffitient of variable to power of 2 number " << i + 1 << ": ";
+		cout << "Coefficient of variable to power of 2 number " << i + 1 << ": ";
 		cin >> matrixD[i][i];
 	}
 
@@ -45,7 +45,7 @@ int main() {
 	{
 		if (i < nOfFVar) 
 		{
-			cout << "Coeffictien of variable without power number "<< i + 1 <<": ";
+			cout << "Coefficient of variable without power number "<< i + 1 <<": ";
 			cin >> matrixC[i];
 		}
 		else {
