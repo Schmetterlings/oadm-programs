@@ -3,7 +3,8 @@
 using namespace std;
 
 int main() {
-	int nOfFVar, nOfineq, nOfeq, nOfVarPower, coefOfVal;
+	int nOfFVar, nOfineq, nOfVarPower, coefOfVal;
+	double coefOfMultiVar;
 
 	cout << "Number of function variables: ";
 	cin >> nOfFVar;
@@ -25,6 +26,11 @@ int main() {
 			matrixD[i][a] = 0;
 		}
 	}
+
+	cout << "Coeffient of variable1 * variable2: ";
+	cin >> coefOfMultiVar;
+	matrixD[0][1] = coefOfMultiVar/2;
+	matrixD[1][0] = coefOfMultiVar/2;
 
 	for (i = 0; i < nOfFVar; i++)
 	{
