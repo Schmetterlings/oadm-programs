@@ -171,43 +171,52 @@ int main()
     int better[2];
     bool isBetter = false;
 
-    for (int i = 0; i < nashEqRow.size(); i++)
+    if (!nashEqRow.empty())
     {
-        for (int j = 0; j < nashEqRow.at(i).size(); j++)
+        for (int i = 0; i < nashEqRow.size(); i++)
         {
-            for (int k = 0; k < nashEqRow.at(i).size(); k++)
+            for (int j = 0; j < nashEqRow.at(i).size(); j++)
             {
-                if (!isBetter)
+                for (int k = 0; k < nashEqRow.at(i).size(); k++)
                 {
-                    if (matrixA[nashEqRow.at(i).at(j)][nashEqColumn.at(i).at(j)] >= matrixA[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
+                    if (!isBetter)
                     {
-                        if (matrixB[nashEqRow.at(i).at(j)][nashEqColumn.at(i).at(j)] >= matrixB[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
+                        if (matrixA[nashEqRow.at(i).at(j)][nashEqColumn.at(i).at(j)] >= matrixA[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
                         {
-                            better[0] = nashEqRow.at(i).at(k);
-                            better[1] = nashEqColumn.at(i).at(k);
-                            isBetter = true;
+                            if (matrixB[nashEqRow.at(i).at(j)][nashEqColumn.at(i).at(j)] >= matrixB[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
+                            {
+                                better[0] = nashEqRow.at(i).at(k);
+                                better[1] = nashEqColumn.at(i).at(k);
+                                isBetter = true;
+                            }
                         }
                     }
-                }
-                else
-                {
-                    if (matrixA[better[0]][better[1]] >= matrixA[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
+                    else
                     {
-                        if (matrixB[better[0]][better[1]] >= matrixB[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
+                        if (matrixA[better[0]][better[1]] >= matrixA[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
                         {
-                            better[0] = nashEqRow.at(i).at(k);
-                            better[1] = nashEqColumn.at(i).at(k);
+                            if (matrixB[better[0]][better[1]] >= matrixB[nashEqRow.at(i).at(k)][nashEqColumn.at(i).at(k)])
+                            {
+                                better[0] = nashEqRow.at(i).at(k);
+                                better[1] = nashEqColumn.at(i).at(k);
+                            }
                         }
                     }
                 }
             }
         }
+
+        if (isBetter)
+        {
+            std::cout << "Feasible solution pair: (" << better[0] + 1 << ", " << better[1] + 1 << ")" << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "No feasible Nash equilibrium found." << std::endl;
     }
 
-    if (isBetter)
-    {
-        std::cout << "The pair (" << better[0] + 1 << ", " << better[1] + 1 << ") is better for both players." << std::endl;
-    }
+    // Mixed strategy
 
     return 0;
 }
