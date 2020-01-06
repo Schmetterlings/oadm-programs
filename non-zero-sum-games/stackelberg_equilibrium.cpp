@@ -11,10 +11,10 @@ int main()
     // 3x3 games only
     int matrixA[3][3] = {{5, 3, -1}, {-3, -5, 8}, {1, 2, -2}};
     int matrixB[3][3] = {{-1, 4, 4}, {5, -8, 5}, {6, 6, -7}};
-    /*
+
+    std::cout << "{Matrix A}" << std::endl;
     for (int i = 0; i < 3; i++)
     {
-        std::cout << "{Matrix A}" << std::endl;
         std::cout << "[Row " << i + 1 << "]" << std::endl;
         for (int j = 0; j < 3; j++)
         {
@@ -22,9 +22,9 @@ int main()
             std::cin >> matrixA[i][j];
         }
     }
+    std::cout << "{Matrix B}" << std::endl;
     for (int i = 0; i < 3; i++)
     {
-        std::cout << "{Matrix B}" << std::endl;
         std::cout << "[Row " << i + 1 << "]" << std::endl;
         for (int j = 0; j < 3; j++)
         {
@@ -32,7 +32,6 @@ int main()
             std::cin >> matrixB[i][j];
         }
     }
-    */
 
     // Draw payoff matrices
     std::cout << std::endl
