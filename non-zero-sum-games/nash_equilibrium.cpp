@@ -8,6 +8,7 @@ int main()
     int matrixA[3][3] = {{5, 3, -1}, {-3, -5, 8}, {-3, 2, -2}};
     int matrixB[3][3] = {{-1, 4, 1}, {1, -8, 3}, {4, 6, -7}};
 
+    /*
     std::cout << "{Matrix A}" << std::endl;
     for (int i = 0; i < 3; i++)
     {
@@ -28,6 +29,7 @@ int main()
             std::cin >> matrixB[i][j];
         }
     }
+    */
 
     // Draw payoff matrices
     std::cout << std::endl
@@ -216,7 +218,50 @@ int main()
         std::cout << "No feasible Nash equilibrium found." << std::endl;
     }
 
-    // Mixed strategy
+    // Find maximums
+    int currentMaxA, currentMaxB, maximumsA[3], maximumsB[3];
+
+    for (int i = 0; i < 3; i++)
+    {
+        currentMaxA = -1000;
+        for (int j = 0; j < 3; j++)
+        {
+            if (currentMaxA < matrixA[j][i])
+            {
+                currentMaxA = matrixA[j][i];
+            }
+        }
+        maximumsA[i] = currentMaxA;
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        currentMaxB = -1000;
+        for (int j = 0; j < 3; j++)
+        {
+            if (currentMaxB < matrixB[j][i])
+            {
+                currentMaxB = matrixB[j][i];
+            }
+        }
+        maximumsB[i] = currentMaxB;
+    }
+
+    // Find minimax
+    int minimaxA = maximumsA[0], minimaxB = maximumsB[0];
+
+    for (int i = 0; i < 2; i++)
+    {
+        if (minimaxA > maximumsA[i + 1])
+        {
+            minimaxA = maximumsA[i + 1];
+        }
+        if (minimaxB > maximumsB[i + 1])
+        {
+            minimaxB = maximumsB[i + 1];
+        }
+    }
+    std::cout << "Minimax for player D1: " << minimaxA << std::endl;
+    std::cout << "Minimax for player D2: " << minimaxB << std::endl;
 
     return 0;
 }
