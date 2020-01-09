@@ -5,9 +5,10 @@
 int main()
 {
     // 3x3 games only
-    int matrixA[3][3] = {{4, 3, 2}, {-2, -5, 1}, {3, -10, 0}};
-    int matrixB[3][3] = {{6, -1, 4}, {-3, 7, -2}, {2, -1, 3}};
+    int matrixA[3][3] = {{-3, 0, -1}, {1, -5, 1}, {2, -1, -2}};
+    int matrixB[3][3] = {{-2, 4, -1}, {0, 2, 3}, {0, -3, -2}};
 
+    /*
     std::cout << "{Matrix A}" << std::endl;
     for (int i = 0; i < 3; i++)
     {
@@ -28,6 +29,7 @@ int main()
             std::cin >> matrixB[i][j];
         }
     }
+    */
 
     // Draw payoff matrices
     std::cout << std::endl
@@ -180,24 +182,24 @@ int main()
             {
                 if (!isBetter)
                 {
-                    if (matrixA[nashEqRow.at(i).at(0)][nashEqColumn.at(i).at(0)] >= matrixA[nashEqRow.at(i + 1).at(0)][nashEqColumn.at(i + 1).at(0)])
+                    if (matrixA[nashEqRow.at(i).at(j)][nashEqColumn.at(i).at(j)] >= matrixA[nashEqRow.at(i + 1).at(j)][nashEqColumn.at(i + 1).at(j)])
                     {
-                        if (matrixB[nashEqRow.at(i).at(0)][nashEqColumn.at(i).at(0)] >= matrixB[nashEqRow.at(i + 1).at(0)][nashEqColumn.at(i + 1).at(0)])
+                        if (matrixB[nashEqRow.at(i).at(j)][nashEqColumn.at(i).at(j)] >= matrixB[nashEqRow.at(i + 1).at(j)][nashEqColumn.at(i + 1).at(j)])
                         {
-                            better[0] = nashEqRow.at(i + 1).at(0);
-                            better[1] = nashEqColumn.at(i + 1).at(0);
+                            better[0] = nashEqRow.at(i + 1).at(j);
+                            better[1] = nashEqColumn.at(i + 1).at(j);
                             isBetter = true;
                         }
                     }
                 }
                 else
                 {
-                    if (matrixA[better[0]][better[1]] >= matrixA[nashEqRow.at(i + 1).at(0)][nashEqColumn.at(i + 1).at(0)])
+                    if (matrixA[better[0]][better[1]] >= matrixA[nashEqRow.at(i + 1).at(j)][nashEqColumn.at(i + 1).at(j)])
                     {
-                        if (matrixB[better[0]][better[1]] >= matrixB[nashEqRow.at(i + 1).at(0)][nashEqColumn.at(i + 1).at(0)])
+                        if (matrixB[better[0]][better[1]] >= matrixB[nashEqRow.at(i + 1).at(j)][nashEqColumn.at(i + 1).at(j)])
                         {
-                            better[0] = nashEqRow.at(i + 1).at(0);
-                            better[1] = nashEqColumn.at(i + 1).at(0);
+                            better[0] = nashEqRow.at(i + 1).at(j);
+                            better[1] = nashEqColumn.at(i + 1).at(j);
                         }
                     }
                 }
@@ -222,9 +224,9 @@ int main()
         currentMaxA = -1000;
         for (int j = 0; j < 3; j++)
         {
-            if (currentMaxA < matrixA[j][i])
+            if (currentMaxA < matrixA[i][j])
             {
-                currentMaxA = matrixA[j][i];
+                currentMaxA = matrixA[i][j];
             }
         }
         maximumsA[i] = currentMaxA;
@@ -234,9 +236,9 @@ int main()
         currentMaxB = -1000;
         for (int j = 0; j < 3; j++)
         {
-            if (currentMaxB < matrixB[i][j])
+            if (currentMaxB < matrixB[j][i])
             {
-                currentMaxB = matrixB[i][j];
+                currentMaxB = matrixB[j][i];
             }
         }
         maximumsB[i] = currentMaxB;
